@@ -1,0 +1,22 @@
+<div fxLayout="row">
+    <md-input-container fxFlex>
+      <input
+        type="search"
+        mdInput name="formName"
+        id="autocomplete.{{formName}}"
+        [(ngModel)]="input.value"
+        [mdAutocomplete]="auto"
+        [formControl]="formCtrl"
+        placeholder={{placeholder}}
+        (blur)="clearIfNull()"
+        [required]="isRequired"
+        (ngModelChange)="valueChanged()">
+
+    <md-autocomplete type="search" #auto="mdAutocomplete">
+      <md-option (onSelectionChange)="onOptionSelect(option)" *ngFor="let option of filteredData | async" [value]="option[displayField]">
+        {{ option[displayField] }}
+      </md-option>
+    </md-autocomplete>
+
+    </md-input-container>
+</div>

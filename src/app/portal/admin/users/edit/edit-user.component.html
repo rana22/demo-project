@@ -1,0 +1,16 @@
+<md-card class="centered-card">
+
+  <md-card-title>
+    Edit User
+  </md-card-title>
+
+  <tdk-user-form
+    [user]="model"
+    [newUsername]="false"
+    [newPassword]="false"
+    [userRoles]="userRoles"
+    (onCancelled)="onCancelled()"
+    (onSubmitted)="onSubmitted($event)">
+  </tdk-user-form>
+
+</md-card>

@@ -1,0 +1,23 @@
+<md-card class="portal-card">
+
+  <md-card-title>
+    Admin
+  </md-card-title>
+
+  <div fxLayout="row" fxLayoutWrap fxLayoutAlign="start center">
+    <portal-link-tile
+      *ngIf="accessRoles"
+      fxFlex.xs="1 1 50%" fxFlex.sm="1 1 33%" fxFlex.md="1 1 25%" fxFlex="1 1 20%"
+      [routerLink]="'roles'"
+      [title]="'Roles'">
+    </portal-link-tile>
+
+    <portal-link-tile
+      *ngIf="accessUsers"
+      fxFlex.xs="1 1 50%" fxFlex.sm="1 1 33%" fxFlex.md="1 1 25%" fxFlex="1 1 20%"
+      [routerLink]="'users'"
+      [title]="'Users'">
+    </portal-link-tile>
+  </div>
+
+</md-card>

@@ -1,0 +1,33 @@
+<form #roleForm="ngForm" class="tdk-form" (ngSubmit)="onSubmit()">
+  <div fxLayout="column" class="tdk-flex-form">
+
+    <div fxFlex.xs="100%" fxFlex="95%">
+      <div fxLayout="column" fxLayoutAlign="space-around start">
+
+        <md-input-container fxFlex class="tdk-full-width">
+          <input mdInput placeholder="Name" [(ngModel)]="model.type" name="type" required>
+        </md-input-container>
+
+        <md-checkbox fxFlex name="adminAccess" [(ngModel)]="model.adminAccess">Admin Access</md-checkbox>
+
+        <h3 fxFlex>
+          Permissions
+        </h3>
+
+        <div *ngFor="let permission of permissionList">
+          <md-checkbox fxFlex name="{{permission.id}}" [(ngModel)]="permission.isChecked">{{permission.title}}</md-checkbox>
+          <i class="material-icons" style="cursor: pointer" (click)="viewPermission(permission)">help_outline</i>
+        </div>
+
+      </div>
+    </div>
+
+    <div fxFlex>
+      <div class="form-button-group" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+        <button fxFlex.xs="100%" fxFlex="30%" [disabled]="!roleForm.form.valid" md-raised-button type="submit" color="primary">SUBMIT</button>
+        <button fxFlex.xs="100%" fxFlex="30%" md-raised-button  (click)="cancel()" type="button" color="accent">CANCEL</button>
+      </div>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,15 @@
+<md-card class="portal-card">
+
+  <md-toolbar color="accent">
+    <span>Roles</span>
+    <span class="tdk-spacer"></span>
+    <button md-raised-button  routerLink="add" color="primary">
+      Add New <md-icon>add_box</md-icon>
+    </button>
+  </md-toolbar>
+
+  <list-grid [columnDefs]="columnDefs" [rowData]="rowData" [editPath]="editPath"></list-grid>
+
+</md-card>
+
+

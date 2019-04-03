@@ -1,0 +1,39 @@
+<md-card class="centered-card">
+
+  <md-card-title>
+    {{model.username}}
+  </md-card-title>
+
+  <form #profileForm="ngForm" class="tdk-form" (ngSubmit)="onSubmit()">
+    <div fxLayout="column" class="tdk-flex-form">
+
+      <div fxFlex.xs="100%" fxFlex="95%">
+        <div fxLayout="column" fxLayoutAlign="space-around start">
+
+          <md-input-container fxFlex class="tdk-full-width">
+            <input mdInput placeholder="Email" [(ngModel)]="model.email" name="email" required>
+          </md-input-container>
+
+          <md-input-container fxFlex class="tdk-full-width">
+            <input mdInput placeholder="First Name" [(ngModel)]="model.firstName" name="firstName" required>
+          </md-input-container>
+
+          <md-input-container fxFlex class="tdk-full-width">
+            <input mdInput placeholder="Last Name" [(ngModel)]="model.lastName" name="lastName" required>
+          </md-input-container>
+
+        </div>
+      </div>
+
+      <div fxFlex>
+        <div class="form-button-group" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+          <button fxFlex.xs="100%" fxFlex="30%" [disabled]="!profileForm.form.valid" md-raised-button (click)="updateProfile()" type="button" color="primary">SUBMIT</button>
+          <button fxFlex.xs="100%" fxFlex="30%" md-raised-button  (click)="cancel()" type="button" color="accent">CANCEL</button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+
+</md-card>

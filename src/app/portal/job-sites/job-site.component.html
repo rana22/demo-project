@@ -1,0 +1,96 @@
+<div fxLayout="row">
+
+  <md-card class="portal-card" fxFlex="20%">
+    <md-toolbar color="accent">
+      <div fxFlex>
+        <div class="form-button-group" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+
+          <div fxFlex="18%">Job Sites</div>
+
+        </div>
+      </div>
+    </md-toolbar>
+
+    <div *ngFor="let jobSite of jobSites" class="space-above">
+      <button md-raised-button name="jobSite.name" class="job-site-select" (click)="showJobSite(jobSite)" fxFlex="100%">
+        {{jobSite.name}} <md-icon>keyboard_arrow_right</md-icon>
+      </button>
+    </div>
+    <br>
+    
+    <div *ngIf="samples?.length > 0">Samples</div>
+    <div *ngFor="let sample of samples">
+      <button md-raised-button name="sample.name" class="job-site-select" fxFlex="100%" (click)="viewSampleDetail(sample)">
+        {{sample.name}} <md-icon>keyboard_arrow_right</md-icon>
+      </button>
+    </div>
+  </md-card>
+
+  <md-card *ngIf="jobSiteSelected" class="portal-card" fxFlex="70%">
+    <md-toolbar color="accent">
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+
+          <div fxFlex="18%">{{model.name}}</div>
+
+        </div>
+      </div>
+    </md-toolbar>
+
+
+
+    <div class="space-above">
+      {{model.description}}
+    </div>
+
+   
+
+    <div fxLayoutAlign="center" class="space-above">
+      <button md-raised-button color="primary" (click)="viewSamples(model.id)" >
+        View Samples
+      </button>
+    </div>
+
+    <div *ngIf="viewSample !== undefined"  [ngClass]="{
+    'danger':( viewSample?.groundwaterLeeching =='low' &&(testResult?.xylenePPM > 50 || testResult?.benzenePPM > 50 || testResult?.toluenePPM > 50 || testResult?.ethylBenzenePPM > 50))
+             && !(viewSample?.groundwaterLeeching =='medium' && (testResult?.xylenePPM < 1 && testResult?.benzenePPM < 0.3 && testResult?.toluenePPM < 0.3 && testResult?.ethylBenzenePPM < 1)), 
+    'safe': !(testResult?.xylenePPM > 50 || testResult?.benzenePPM > 50 || testResult?.toluenePPM > 50 || testResult?.ethylBenzenePPM > 50)
+            && (viewSample?.groundwaterLeeching =='medium' && (testResult?.xylenePPM < 1 && testResult?.benzenePPM < 0.3 && testResult?.toluenePPM < 0.3 && testResult?.ethylBenzenePPM < 1))}">
+      <h3>
+          {{viewSample.name}}
+      </h3>
+      <p>
+        {{viewSample.detail}}
+      </p>
+      <p>
+          {{viewSample.id}}
+        </p>
+
+        <p>
+            {{viewSample.type}}
+          </p>
+          <p>
+            {{viewSample.groundwaterLeeching}}
+          </p>
+      
+    </div>
+
+    <div *ngIf="testResult">
+      sample Id: {{testResult?.sampleId}}
+      <br>
+      BenzenePPM: {{testResult?.benzenePPM}}
+      <br>
+      Toluene: {{testResult?.toluenePPM}}
+      <br>
+
+      EthylBenzene: {{testResult?.ethylBenzenePPM}}
+      <br>
+      Xylene: {{testResult?.xylenePPM}}
+    </div>
+
+
+    
+
+  </md-card>
+
+</div>

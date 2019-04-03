@@ -1,0 +1,14 @@
+<md-card class="centered-card">
+
+  <md-card-title>
+    Edit Role
+  </md-card-title>
+
+  <tdk-role-form
+    [role]="model"
+    [rolePermissions]="rolePermissions"
+    (onCancelled)="onCancelled()"
+    (onSubmitted)="onSubmitted($event)">
+  </tdk-role-form>
+
+</md-card>

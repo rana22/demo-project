@@ -1,0 +1,12 @@
+<md-toolbar color="accent">
+  <button *ngIf="allowExport" md-raised-button color="primary" (click)="exportToCSV()">
+    Export CSV <md-icon>launch</md-icon>
+  </button>
+  <span class="tdk-spacer"></span>
+  <md-input-container>
+    <input mdInput (keyup)="onQuickFilterChanged($event)" type="search" id="quickFilterInput" placeholder="Search"/>
+  </md-input-container>
+</md-toolbar>
+<ag-grid-angular #agGrid class="grid-size ag-material"
+                 [gridOptions]="gridOptions">
+</ag-grid-angular>

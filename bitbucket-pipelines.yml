@@ -1,0 +1,18 @@
+# This is a sample build configuration for Javascript.
+# Check our guides at https://confluence.atlassian.com/x/VYk8Lw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+
+#clone:
+#  depth: full
+
+#pipelines:
+#  branches:
+#    develop:
+#      - step:
+#          script:
+#            - ./heroku-deploy.sh tdk-web-dev
+#    master:
+#      - step:
+#          script:
+#            - ./heroku-deploy.sh tdk-web-stage

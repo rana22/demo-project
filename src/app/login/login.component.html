@@ -1,0 +1,30 @@
+<md-card class="login-card">
+
+  <md-card-title>
+    Login
+  </md-card-title>
+
+  <form #loginForm="ngForm" class="example-form">
+    <div fxLayout="row">
+      <div fxFlex.xs="100%" fxFlex="95%">
+        <div fxLayout="column">
+          <md-input-container fxFlex="95%">
+            <input mdInput placeholder="Username" [(ngModel)]="model.username" name="username" required>
+          </md-input-container>
+
+          <md-input-container fxFlex="95%">
+            <input mdInput placeholder="Password" [(ngModel)]="model.password" name="password" type="password" required>
+          </md-input-container>
+
+          <div fxFlex>
+            <div class="form-button-group" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+              <button fxFlex.xs="95%" fxFlex="30%" [disabled]="!loginForm.form.valid" md-raised-button  (click)="login()" type="submit" color="primary">LOGIN</button>
+              <a fxFlex.xs="95%" fxFlex="30%" href routerLink="forgot-password">Forgot Password?</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</md-card>

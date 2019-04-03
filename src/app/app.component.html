@@ -1,0 +1,58 @@
+<md-sidenav-container>
+
+  <md-sidenav #sidenav mode="over" class="app-sidenav">
+
+    <md-list (click)="sidenav.toggle()">
+
+      <md-list-item>
+        <a md-button routerLink="portal"><md-icon>home</md-icon>Home</a>
+      </md-list-item>
+
+      <h3 md-subheader>Home</h3>
+
+      <md-list-item>
+        <a md-button routerLink="portal/job-sites">Job Sites</a>
+      </md-list-item>
+
+      <md-list-item>
+        <a md-button routerLink="portal/profile">Profile</a>
+      </md-list-item>
+
+      <h3 md-subheader *ngIf="canAccessAdmin()">Admin</h3>
+
+      <md-list-item *ngIf="canAccessAdmin() && accessItem('roles')">
+        <a md-button routerLink="portal/admin/roles">Roles</a>
+      </md-list-item>
+
+      <md-list-item *ngIf="canAccessAdmin() && accessItem('users')">
+        <a md-button routerLink="portal/admin/users">Users</a>
+      </md-list-item>
+
+      <md-list-item>
+        <a md-button (click)="logout()"><md-icon>exit_to_app</md-icon>Logout</a>
+      </md-list-item>
+
+    </md-list>
+
+  </md-sidenav>
+
+  <md-toolbar scroll color="primary">
+
+    <i *ngIf="isLoggedIn" style="cursor: pointer" class="material-icons app-toolbar-menu" (click)="sidenav.toggle()">menu</i>
+
+    <span *ngIf="notOnPortalScreen() && isLoggedIn" class="toolbar-space-between"></span>
+
+    <i *ngIf="notOnPortalScreen() && isLoggedIn" style="cursor: pointer" class="material-icons keyboard_arrow_left" (click)="back();">keyboard_arrow_left</i>
+
+    <span class="toolbar-space-between"></span>
+
+    <i *ngIf="isLoggedIn" style="cursor: pointer" class="material-icons home" routerLink="portal">home</i>
+
+  </md-toolbar>
+
+  <md-sidenav-container>
+    <router-outlet></router-outlet>
+  </md-sidenav-container>
+
+</md-sidenav-container>
+<div [ngBusy]="{busy: busy, message: 'Loading...', minDuration: 600}"></div>

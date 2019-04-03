@@ -1,0 +1,56 @@
+<form #userForm="ngForm" class="tdk-form" (ngSubmit)="onSubmit()">
+  <div fxLayout="column" class="tdk-flex-form">
+
+    <div fxFlex.xs="100%" fxFlex="95%">
+      <div fxLayout="column" fxLayoutAlign="space-around start">
+
+        <md-input-container fxFlex class="tdk-full-width" *ngIf="newUsername">
+          <input fxFlex fxFlexFill mdInput placeholder="User Name" [(ngModel)]="model.username" name="username" required>
+        </md-input-container>
+
+        <md-input-container fxFlex class="tdk-full-width" *ngIf="newPassword">
+          <input mdInput placeholder="Password" [(ngModel)]="model.password" name="password" type="password" required>
+        </md-input-container>
+
+        <md-input-container fxFlex class="tdk-full-width">
+          <input mdInput placeholder="Email" [(ngModel)]="model.email" name="email" required>
+        </md-input-container>
+
+        <md-input-container fxFlex class="tdk-full-width">
+          <input mdInput placeholder="First Name" [(ngModel)]="model.firstName" name="firstName" required>
+        </md-input-container>
+
+        <md-input-container fxFlex class="tdk-full-width">
+          <input mdInput placeholder="Last Name" [(ngModel)]="model.lastName" name="lastName" required>
+        </md-input-container>
+
+        <md-select fxFlex class="tdk-full-width" placeholder="Status" [(ngModel)]="model.status" name="status" required>
+          <md-option *ngFor="let status of userStatus" [value]="status">
+            {{status}}
+          </md-option>
+        </md-select>
+
+      </div>
+    </div>
+
+    <div fxFlex>
+      <Label>Roles</Label>
+      <chips-input
+        [(model)]="userRoles"
+        [selectionData]="roles"
+        placeholder="Role"
+        displayField="type"
+        modelField="id"
+        formName="roleSelect">
+      </chips-input>
+    </div>
+
+    <div fxFlex>
+      <div class="form-button-group" fxLayout="row" fxLayoutWrap fxLayoutAlign="space-between center">
+        <button fxFlex.xs="100%" fxFlex="30%" [disabled]="(userRoles.length == 0) || !validForm(userForm.form.valid)" md-raised-button type="submit" color="primary">SUBMIT</button>
+        <button fxFlex.xs="100%" fxFlex="30%" md-raised-button  (click)="cancel()" type="button" color="accent">CANCEL</button>
+      </div>
+    </div>
+
+  </div>
+</form>
